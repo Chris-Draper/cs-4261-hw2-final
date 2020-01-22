@@ -21,6 +21,19 @@ class App extends Component {
         this.setState({clothing: [...this.state.clothing, clothing]});
     }
 
+    componentDidMount() {
+        this.refresh();
+      }
+    
+    refresh() {
+        fetch('http://localhost:4001/users')
+        .then(res => res.json())
+        .then((data) => {
+          this.setState({ clothing: data })
+        })
+        .catch(console.log)
+    }
+
     render() {
         const { clothing } = this.state;
         
